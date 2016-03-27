@@ -6,9 +6,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -16,6 +19,7 @@ public class HuntItems extends AppCompatActivity {
 
     public static ArrayList<LineItem> itemList = new ArrayList<LineItem>();
     public static ArrayAdapter<LineItem> itemAdapter;
+    public static final String POSITION = "position";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,16 @@ public class HuntItems extends AppCompatActivity {
         ListView listView = (ListView)findViewById(R.id.listview2);
         itemAdapter = new ArrayAdapter<LineItem>(this, android.R.layout.simple_list_item_1, itemList);
         listView.setAdapter(itemAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                Intent intent = new Intent(HuntItems.this, More_info.class);
+                intent.putExtra(POSITION, position);
+                startActivity(intent);
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

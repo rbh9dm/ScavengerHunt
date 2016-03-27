@@ -29,6 +29,10 @@
         <activity
             android:name=".Add_Hunt_Item"
             android:label="@string/title_activity_add__hunt__item"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".More_info"
+            android:label="@string/title_activity_more_info"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

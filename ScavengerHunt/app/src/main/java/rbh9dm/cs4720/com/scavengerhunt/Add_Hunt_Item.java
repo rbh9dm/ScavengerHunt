@@ -27,7 +27,7 @@ public class Add_Hunt_Item extends AppCompatActivity {
 
                 EditText nameField = (EditText) findViewById(R.id.nameHuntItem);
                 String name = ""+nameField.getText();
-                EditText descField = (EditText) findViewById(R.id.nameHuntItem);
+                EditText descField = (EditText) findViewById(R.id.description);
                 String desc = ""+descField.getText();
                 CheckBox picReqField = (CheckBox) findViewById(R.id.picReq);
                 boolean picReq = picReqField.isChecked();

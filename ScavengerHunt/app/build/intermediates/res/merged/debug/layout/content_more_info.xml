@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="rbh9dm.cs4720.com.scavengerhunt.More_info"
+    tools:showIn="@layout/activity_more_info">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/Mdescription"
+        android:layout_marginTop="45dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/camera"
+        android:layout_marginTop="107dp"
+        android:background="@drawable/camera_icon"
+        android:layout_below="@+id/Mdescription"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="51dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/location"
+        android:layout_alignTop="@+id/camera"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="59dp"
+        android:background="@drawable/google_maps_icon"
+        android:layout_alignBottom="@+id/camera" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Optional"
+        android:id="@+id/chkcamera"
+        android:layout_marginTop="38dp"
+        android:layout_below="@+id/camera"
+        android:layout_alignStart="@+id/camera"
+        android:layout_alignEnd="@+id/camera" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Optional"
+        android:id="@+id/chklocation"
+        android:layout_alignTop="@+id/chkcamera"
+        android:layout_alignStart="@+id/location"
+        android:layout_alignEnd="@+id/location" />
+
+</RelativeLayout>

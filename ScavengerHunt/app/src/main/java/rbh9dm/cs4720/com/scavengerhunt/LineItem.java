@@ -8,6 +8,8 @@ public class LineItem {
     private String description;
     private boolean pictureRequired;
     private boolean locationRequired;
+    private boolean pictureOk;
+    private boolean locationOk;
 
     public LineItem(String name, String description, boolean pictureRequired, boolean locationRequired) {
         this.name = name;
@@ -50,5 +52,21 @@ public class LineItem {
 
     public void setLocationRequired(boolean locationRequired) {
         this.locationRequired = locationRequired;
+    }
+
+    public boolean isPictureOk() {
+        return pictureOk;
+    }
+
+    public void setPictureOk(boolean pictureOk) {
+        this.pictureOk = pictureOk;
+    }
+
+    public boolean isLocationOk() {
+        return locationOk;
+    }
+
+    public void setLocationOk(boolean locationOk) {
+        this.locationOk = locationOk;
     }
 }
