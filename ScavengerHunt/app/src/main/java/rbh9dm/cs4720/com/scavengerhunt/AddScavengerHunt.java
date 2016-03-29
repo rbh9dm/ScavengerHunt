@@ -29,8 +29,10 @@ public class AddScavengerHunt extends AppCompatActivity {
                 EditText nameField = (EditText) findViewById(R.id.editText);
                 String name = nameField.getText().toString();
 
+                ScavengerHuntDBHelper myDB = new ScavengerHuntDBHelper(AddScavengerHunt.this);
+                myDB.insertHunt(name);
+                //MainActivity.huntList = myDB.getAllHunts();
                 MainActivity.huntList.add(name);
-
                 MainActivity.huntsAdapter.notifyDataSetChanged();
 
                 finish();

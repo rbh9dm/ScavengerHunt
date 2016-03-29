@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -26,13 +29,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Your Scavenger Hunts");
+        getSupportActionBar().setTitle("Scavenger Hunts");
 
+        /*
+        ViewPager viewPager = (ViewPager) findViewById(R.id.tabanim_viewpager);
+        setupViewPager(viewPager);
 
-        ListView listView = (ListView)findViewById(R.id.listview);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabanim_tabs);
+        tabLayout.setupWithViewPager(viewPager);
+        */
+
+        ScavengerHuntDBHelper myDB = new ScavengerHuntDBHelper(this);
+        huntList = myDB.getAllHunts();
         huntsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, huntList);
+
+        ListView listView = (ListView) findViewById(R.id.listview);
         listView.setAdapter(huntsAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
@@ -78,4 +92,14 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    /*
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFrag(new DummyFragment(getResources().getColor(R.color.accent_material_light)), "CAT");
+        adapter.addFrag(new DummyFragment(getResources().getColor(R.color.ripple_material_light)), "DOG");
+        adapter.addFrag(new DummyFragment(getResources().getColor(R.color.button_material_dark)), "MOUSE");
+        viewPager.setAdapter(adapter);
+    }
+    */
 }

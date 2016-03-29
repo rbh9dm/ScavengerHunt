@@ -1,5 +1,13 @@
 [
     {
+        "merged": "C:\\Users\\Student User\\Documents\\ScavengerHunt\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\Student User\\Documents\\ScavengerHunt\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Student User\\Documents\\GitHub\\ScavengerHunt\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\Student User\\Documents\\GitHub\\ScavengerHunt\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
         "merged": "C:\\Users\\Student User\\AndroidStudioProjects\\UVABucketList-master-master(test)\\ScavengerHunt\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi-v4\\ic_launcher.png",
         "source": "C:\\Users\\Student User\\AndroidStudioProjects\\UVABucketList-master-master(test)\\ScavengerHunt\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
@@ -8,11 +16,7 @@
         "source": "C:\\Users\\Gabriel Lomba\\Desktop\\ScavengerHunt\\ScavengerHunt\\ScavengerHunt\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\Student User\\Documents\\GitHub\\ScavengerHunt\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi-v4\\ic_launcher.png",
-        "source": "C:\\Users\\Student User\\Documents\\GitHub\\ScavengerHunt\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
-    },
-    {
-        "merged": "C:\\Users\\Student User\\Documents\\ScavengerHunt\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi-v4\\ic_launcher.png",
-        "source": "C:\\Users\\Student User\\Documents\\ScavengerHunt\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\Student User\\Documents\\GitHub\\ScavengerHunt\\ScavengerHunt\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\Student User\\Documents\\GitHub\\ScavengerHunt\\ScavengerHunt\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     }
 ]
