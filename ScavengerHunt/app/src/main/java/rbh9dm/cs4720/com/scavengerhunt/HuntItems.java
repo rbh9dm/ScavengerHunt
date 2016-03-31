@@ -29,21 +29,26 @@ public class HuntItems extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_hunt_items);
+
+        /*** Firebase ***/
+        Firebase.setAndroidContext(this);
+
+        /*** Toolbar ***/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Intent intent = getIntent();
         int pos = intent.getIntExtra(Tab1.ID, 0);
         getSupportActionBar().setTitle(Tab1.huntList.get(pos).getName());
 
-
+        /*** Load items ***/
         itemList = Tab1.myHuntDB.getAllItems(Tab1.huntList.get(pos).getName());
 
         ListView listView = (ListView)findViewById(R.id.listview2);
         itemAdapter = new ArrayAdapter<LineItem>(this, android.R.layout.simple_list_item_1, itemList);
         listView.setAdapter(itemAdapter);
 
+        /*** Navigate to more info screen ***/
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
@@ -54,6 +59,7 @@ public class HuntItems extends AppCompatActivity {
             }
         });
 
+        /*** Add new task FAB ***/
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,10 +72,12 @@ public class HuntItems extends AppCompatActivity {
             }
         });
 
+        /*** Share button ***/
         Button share = (Button) findViewById(R.id.share);
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*** Only share if at least one task ***/
                 if (itemList.size() > 0) {
                     Intent intent = getIntent();
                     int pos = intent.getIntExtra(Tab1.ID, 0);
@@ -84,6 +92,7 @@ public class HuntItems extends AppCompatActivity {
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
                 }
+                /*** Otherwise do not share ***/
                 else {
                     Context context = getApplicationContext();
                     CharSequence text = "Attempt to share failed. Please create a task first.";

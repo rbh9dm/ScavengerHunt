@@ -35,6 +35,7 @@ public class Tab1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.tab_1, container, false);
 
+        /*** connect to DB and load items ***/
         myDB = new ScavengerHuntDBHelper(getActivity());
         myHuntDB = new HuntItemDBHelper(getActivity());
         huntList = myDB.getAllHunts();
@@ -42,6 +43,8 @@ public class Tab1 extends Fragment {
 
         ListView listView = (ListView) v.findViewById(R.id.listview);
         listView.setAdapter(huntsAdapter);
+
+        /*** Navigate to hunt items screen on click ***/
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
@@ -53,7 +56,8 @@ public class Tab1 extends Fragment {
                 startActivity(intent);
             }
         });
-
+        
+        /*** Add FAB ***/
         FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

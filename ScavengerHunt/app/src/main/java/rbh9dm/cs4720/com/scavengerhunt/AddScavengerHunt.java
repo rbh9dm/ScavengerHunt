@@ -22,22 +22,21 @@ public class AddScavengerHunt extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        /*
-        Firebase.setAndroidContext(this);
-         */
-
         setContentView(R.layout.activity_add_scavenger_hunt);
+
+        /*** Set up toolbar ***/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Add a Scavenger Hunt");
 
+        /*** Set up FAB ***/
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 EditText nameField = (EditText) findViewById(R.id.editText);
                 String name = nameField.getText().toString();
+                /*** Don't add if name is empty ***/
                 if(name.equals("")) {
                     Context context = getApplicationContext();
                     CharSequence text = "Please name your Scavenger Hunt";
@@ -46,6 +45,7 @@ public class AddScavengerHunt extends AppCompatActivity {
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
                 }
+                /*** Add otherwise ***/
                 else {
                     Tab1.myDB.insertHunt(name, false);
                     Tab1.huntList.add(new ScavengerHunt(name));

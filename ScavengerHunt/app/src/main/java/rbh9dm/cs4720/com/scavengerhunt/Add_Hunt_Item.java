@@ -19,10 +19,13 @@ public class Add_Hunt_Item extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__hunt__item);
+
+        /**** Set up toolbar ***/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Add a Task");
 
+        /*** Set up FAB ***/
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,6 +33,7 @@ public class Add_Hunt_Item extends AppCompatActivity {
 
                 EditText nameField = (EditText) findViewById(R.id.nameHuntItem);
                 String name = ""+nameField.getText();
+                /*** Don't add if the name is empty ***/
                 if (name.equals("")) {
                     Context context = getApplicationContext();
                     CharSequence text = "Please name your task.";
@@ -38,6 +42,7 @@ public class Add_Hunt_Item extends AppCompatActivity {
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
                 }
+                /*** Add otherwise ***/
                 else {
                     EditText descField = (EditText) findViewById(R.id.description);
                     String desc = "" + descField.getText();
