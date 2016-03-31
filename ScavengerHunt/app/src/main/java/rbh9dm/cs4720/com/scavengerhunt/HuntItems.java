@@ -1,5 +1,6 @@
 package rbh9dm.cs4720.com.scavengerhunt;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 
@@ -68,11 +70,28 @@ public class HuntItems extends AppCompatActivity {
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = getIntent();
-                int pos = intent.getIntExtra(Tab1.ID, 0);
-                Firebase myFirebaseRef = new Firebase("https://scavengerhuntapp.firebaseio.com/");
-                Firebase thisHunt = myFirebaseRef.child("hunts").child(Tab1.huntList.get(pos).getName());
-                thisHunt.setValue(itemList);
+                if (itemList.size() > 0) {
+                    Intent intent = getIntent();
+                    int pos = intent.getIntExtra(Tab1.ID, 0);
+                    Firebase myFirebaseRef = new Firebase("https://scavengerhuntapp.firebaseio.com/");
+                    Firebase thisHunt = myFirebaseRef.child("hunts").child(Tab1.huntList.get(pos).getName());
+                    thisHunt.setValue(itemList);
+
+                    Context context = getApplicationContext();
+                    CharSequence text = "Scavenger Hunt added!";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+                else {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Attempt to share failed. Please create a task first.";
+                    int duration = Toast.LENGTH_LONG;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
             }
         });
     }

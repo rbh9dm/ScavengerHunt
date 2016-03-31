@@ -52,42 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        /*
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_main);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Scavenger Hunts");
-        ScavengerHuntDBHelper myDB = new ScavengerHuntDBHelper(this);
-        huntList = myDB.getAllHunts();
-        huntsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, huntList);
-
-        ListView listView = (ListView) findViewById(R.id.listview);
-        listView.setAdapter(huntsAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-
-                String selected = ((TextView) view.findViewById(android.R.id.text1)).getText().toString();
-
-                Intent intent = new Intent(MainActivity.this, HuntItems.class);
-                intent.putExtra(TITLE, selected);
-                startActivity(intent);
-            }
-        });
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(MainActivity.this, AddScavengerHunt.class);
-                startActivity(intent);
-            }
-        });
-        */
         // Declaring Your View and Variables
 
         super.onCreate(savedInstanceState);
@@ -97,31 +61,32 @@ public class MainActivity extends AppCompatActivity {
 
         // Creating The Toolbar and setting it as the Toolbar for the activity
 
-            toolbar = (Toolbar) findViewById(R.id.tool_bar);
-            setSupportActionBar(toolbar);
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Scavenger Hunts");
 
 
-            // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-            adapter =  new ViewPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
+        // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
+        adapter =  new ViewPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
 
-            // Assigning ViewPager View and setting the adapter
-            pager = (ViewPager) findViewById(R.id.pager);
-            pager.setAdapter(adapter);
+         // Assigning ViewPager View and setting the adapter
+         pager = (ViewPager) findViewById(R.id.pager);
+         pager.setAdapter(adapter);
 
-            // Assiging the Sliding Tab Layout View
-            tabs = (SlidingTabLayout) findViewById(R.id.tabs);
-            tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
+         // Assiging the Sliding Tab Layout View
+         tabs = (SlidingTabLayout) findViewById(R.id.tabs);
+         tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
 
-            // Setting Custom Color for the Scroll bar indicator of the Tab View
-            tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
+         // Setting Custom Color for the Scroll bar indicator of the Tab View
+         tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
                 @Override
                 public int getIndicatorColor(int position) {
-                    return getResources().getColor(R.color.tabsScrollColor);
-                }
+                 return getResources().getColor(R.color.colorAccent);
+             }
             });
 
-            // Setting the ViewPager For the SlidingTabsLayout
-            tabs.setViewPager(pager);
+         // Setting the ViewPager For the SlidingTabsLayout
+         tabs.setViewPager(pager);
     }
 
     @Override

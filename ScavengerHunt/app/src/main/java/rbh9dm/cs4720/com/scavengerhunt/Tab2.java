@@ -37,29 +37,7 @@ public class Tab2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable final Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab_2,container,false);
-        ScavengerHuntDBHelper myDB = new ScavengerHuntDBHelper(getActivity());
-        /*Firebase.setAndroidContext(getActivity());
-        Firebase ref = new Firebase("https://scavengerhuntapp.firebaseio.com/");
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                dataSnapshot = dataSnapshot.child("hunts");
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    String name = child.getKey();
-                    Log.i("key: ", name);
-                    Tab2.huntList.add(name);
-                }
-                huntsAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
-        */
         huntsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, huntList);
-
 
         ListView listView = (ListView) v.findViewById(R.id.listview);
         listView.setAdapter(huntsAdapter);
@@ -72,6 +50,24 @@ public class Tab2 extends Fragment {
                 Intent intent = new Intent(getActivity(), HuntItems.class);
                 intent.putExtra(TITLE, selected);
                 startActivity(intent);
+            }
+        });
+        Firebase.setAndroidContext(getActivity());
+        Firebase ref = new Firebase("https://scavengerhuntapp.firebaseio.com/");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                dataSnapshot = dataSnapshot.child("hunts");
+                huntList.clear();
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    Tab2.huntList.add(child.getKey());
+                }
+                huntsAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
             }
         });
 
@@ -89,28 +85,4 @@ public class Tab2 extends Fragment {
 
     }
 
-    @Override
-    public void onResume(){
-        super.onResume();
-        huntList.clear();
-        Firebase.setAndroidContext(getActivity());
-        Firebase ref = new Firebase("https://scavengerhuntapp.firebaseio.com/");
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                dataSnapshot = dataSnapshot.child("hunts");
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    String name = child.getKey();
-                    Log.i("key: ", name);
-                    Tab2.huntList.add(name);
-                }
-                huntsAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
-    }
 }
