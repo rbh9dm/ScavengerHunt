@@ -280,6 +280,7 @@
     <string name="title_activity_add_scavenger_hunt">AddScavengerHunt</string>
     <string name="title_activity_hunt_items">HuntItems</string>
     <string name="title_activity_more_info">More_info</string>
+    <string name="title_activity_web_hunt_items">WebHuntItems</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>

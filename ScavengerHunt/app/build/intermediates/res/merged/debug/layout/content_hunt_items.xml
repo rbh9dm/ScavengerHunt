@@ -13,11 +13,28 @@
     tools:showIn="@layout/activity_hunt_items"
     android:orientation="vertical">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Share Online"
-        android:id="@+id/share" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Share Online"
+            android:id="@+id/share"
+            android:layout_weight="0.48"
+            android:layout_marginLeft="10dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete Hunt"
+            android:id="@+id/delete"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="#eb0f0f"
+            android:layout_marginRight="10dp" />
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/listview2"
