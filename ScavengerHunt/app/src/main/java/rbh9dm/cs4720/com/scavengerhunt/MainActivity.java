@@ -1,34 +1,58 @@
 package rbh9dm.cs4720.com.scavengerhunt;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.firebase.client.Firebase;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    /*
     public static ArrayList<String> huntList = new ArrayList<String>();
     public static ArrayAdapter<String> huntsAdapter;
     public static final String TITLE = "title";
+    */
+
+    Toolbar toolbar;
+    ViewPager pager;
+    ViewPagerAdapter adapter;
+    SlidingTabLayout tabs;
+    CharSequence Titles[]={"Your Scavenger Hunts","Browse Online"};
+    int Numboftabs =2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /*
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
@@ -36,15 +60,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Scavenger Hunts");
-
-        /*
-        ViewPager viewPager = (ViewPager) findViewById(R.id.tabanim_viewpager);
-        setupViewPager(viewPager);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabanim_tabs);
-        tabLayout.setupWithViewPager(viewPager);
-        */
-
         ScavengerHuntDBHelper myDB = new ScavengerHuntDBHelper(this);
         huntList = myDB.getAllHunts();
         huntsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, huntList);
@@ -72,6 +87,41 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        */
+        // Declaring Your View and Variables
+
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+
+
+        // Creating The Toolbar and setting it as the Toolbar for the activity
+
+            toolbar = (Toolbar) findViewById(R.id.tool_bar);
+            setSupportActionBar(toolbar);
+
+
+            // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
+            adapter =  new ViewPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
+
+            // Assigning ViewPager View and setting the adapter
+            pager = (ViewPager) findViewById(R.id.pager);
+            pager.setAdapter(adapter);
+
+            // Assiging the Sliding Tab Layout View
+            tabs = (SlidingTabLayout) findViewById(R.id.tabs);
+            tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
+
+            // Setting Custom Color for the Scroll bar indicator of the Tab View
+            tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
+                @Override
+                public int getIndicatorColor(int position) {
+                    return getResources().getColor(R.color.tabsScrollColor);
+                }
+            });
+
+            // Setting the ViewPager For the SlidingTabsLayout
+            tabs.setViewPager(pager);
     }
 
     @Override
@@ -80,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -96,13 +147,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new DummyFragment(getResources().getColor(R.color.accent_material_light)), "CAT");
-        adapter.addFrag(new DummyFragment(getResources().getColor(R.color.ripple_material_light)), "DOG");
-        adapter.addFrag(new DummyFragment(getResources().getColor(R.color.button_material_dark)), "MOUSE");
-        viewPager.setAdapter(adapter);
-    }
-    */
 }

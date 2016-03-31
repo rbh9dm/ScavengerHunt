@@ -18,6 +18,19 @@ public class LineItem {
         this.locationRequired= locationRequired;
     }
 
+    public LineItem(String name, String description, int pictureRequired, int locationRequired) {
+        this.name = name;
+        this.description = description;
+        if(pictureRequired == 0)
+            this.pictureRequired = false;
+        else
+            this.pictureRequired = true;
+        if(locationRequired == 0)
+            this.locationRequired = false;
+        else
+            this.locationRequired = true;
+    }
+
     public String getName() {
         return name;
     }

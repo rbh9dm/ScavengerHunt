@@ -20,7 +20,10 @@ public class AddScavengerHunt extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*
         Firebase.setAndroidContext(this);
+         */
 
         setContentView(R.layout.activity_add_scavenger_hunt);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -34,14 +37,9 @@ public class AddScavengerHunt extends AppCompatActivity {
                 EditText nameField = (EditText) findViewById(R.id.editText);
                 String name = nameField.getText().toString();
 
-                ScavengerHuntDBHelper myDB = new ScavengerHuntDBHelper(AddScavengerHunt.this);
-                myDB.insertHunt(name);
-
-                Firebase myFirebaseRef = new Firebase("https://scavengerhuntapp.firebaseio.com/");
-                myFirebaseRef.child("hunt").setValue(name);
-
-                MainActivity.huntList.add(name);
-                MainActivity.huntsAdapter.notifyDataSetChanged();
+                Tab1.myDB.insertHunt(name, false);
+                Tab1.huntList.add(new ScavengerHunt(name));
+                Tab1.huntsAdapter.notifyDataSetChanged();
 
                 finish();
             }

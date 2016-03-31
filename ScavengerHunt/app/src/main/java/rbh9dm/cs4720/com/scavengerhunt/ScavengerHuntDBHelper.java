@@ -17,8 +17,8 @@ public class ScavengerHuntDBHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "ScavengerHuntApp.db";
     public static final String HUNTS_TABLE_NAME = "hunts";
-    public static final String HUNTS_COLUMN_ID = "id";
     public static final String HUNTS_COLUMN_NAME = "name";
+    public static final String HUNTS_COLUMN_DONE = "done";
     private HashMap hp;
 
     public ScavengerHuntDBHelper(Context context)
@@ -31,7 +31,7 @@ public class ScavengerHuntDBHelper extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table hunts " +
-                        "(id integer primary key, name text)"
+                        "(name text primary key, done boolean)"
         );
     }
 
@@ -42,20 +42,22 @@ public class ScavengerHuntDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertHunt  (String name)
+    public boolean insertHunt  (String name, boolean done)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name", name);
-        db.insert("hunts", null, contentValues);
+        contentValues.put(HUNTS_COLUMN_NAME, name);
+        contentValues.put(HUNTS_COLUMN_DONE, done);
+        db.insert(HUNTS_TABLE_NAME, null, contentValues);
         return true;
     }
 
-    public Cursor getData(int id){
+    public Cursor getData(String name){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from hunts where id="+id+"", null );
+        Cursor res =  db.rawQuery( "select * from hunts where name="+name+"", null );
         return res;
     }
+
 
     public int numberOfRows(){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -63,26 +65,27 @@ public class ScavengerHuntDBHelper extends SQLiteOpenHelper {
         return numRows;
     }
 
-    public boolean updateHunt (Integer id, String name)
+    public boolean updateHunt (String name, boolean done)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name", name);
-        db.update("hunts", contentValues, "id = ? ", new String[] { Integer.toString(id) } );
+        contentValues.put(HUNTS_COLUMN_NAME, name);
+        contentValues.put(HUNTS_COLUMN_DONE, done);
+        db.update(HUNTS_TABLE_NAME, contentValues, "name = ? ", new String[] { name } );
         return true;
     }
 
-    public Integer deleteHunt (Integer id)
+    public Integer deleteHunt (String name)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete("hunts",
-                "id = ? ",
-                new String[] { Integer.toString(id) });
+                "name = ? ",
+                new String[] { name });
     }
 
-    public ArrayList<String> getAllHunts()
+    public ArrayList<ScavengerHunt> getAllHunts()
     {
-        ArrayList<String> array_list = new ArrayList<String>();
+        ArrayList<ScavengerHunt> array_list = new ArrayList<ScavengerHunt>();
 
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -90,7 +93,7 @@ public class ScavengerHuntDBHelper extends SQLiteOpenHelper {
         res.moveToFirst();
 
         while(res.isAfterLast() == false){
-            array_list.add(res.getString(res.getColumnIndex(HUNTS_COLUMN_NAME)));
+            array_list.add(new ScavengerHunt(res.getString(res.getColumnIndex(HUNTS_COLUMN_NAME))));
             res.moveToNext();
         }
         return array_list;

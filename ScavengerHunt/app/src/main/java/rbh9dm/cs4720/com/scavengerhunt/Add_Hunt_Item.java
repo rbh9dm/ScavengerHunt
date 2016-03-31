@@ -1,5 +1,6 @@
 package rbh9dm.cs4720.com.scavengerhunt;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -37,6 +38,10 @@ public class Add_Hunt_Item extends AppCompatActivity {
 
                 LineItem item = new LineItem(name, desc, picReq, locReq);
                 HuntItems.itemList.add(item);
+
+                Intent intent = getIntent();
+
+                Tab1.myHuntDB.insertHunt(intent.getStringExtra("name"), name, desc, picReq, locReq);
 
                 HuntItems.itemAdapter.notifyDataSetChanged();
 
