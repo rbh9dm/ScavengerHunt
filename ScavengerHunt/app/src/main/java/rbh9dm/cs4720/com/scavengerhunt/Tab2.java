@@ -53,7 +53,7 @@ public class Tab2 extends Fragment {
             }
         });
         Firebase.setAndroidContext(getActivity());
-        Firebase ref = new Firebase("https://scavengerhuntapp.firebaseio.com/");
+        Firebase ref = new Firebase("https://cs4720scavhunt.firebaseio.com/");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

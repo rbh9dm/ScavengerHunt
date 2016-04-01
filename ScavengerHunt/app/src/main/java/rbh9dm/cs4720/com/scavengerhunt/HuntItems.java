@@ -82,7 +82,7 @@ public class HuntItems extends AppCompatActivity {
                 if (itemList.size() > 0) {
                     Intent intent = getIntent();
                     int pos = intent.getIntExtra(Tab1.ID, 0);
-                    Firebase myFirebaseRef = new Firebase("https://scavengerhuntapp.firebaseio.com/");
+                    Firebase myFirebaseRef = new Firebase("https://cs4720scavhunt.firebaseio.com/");
                     Firebase thisHunt = myFirebaseRef.child("hunts").child(Tab1.huntList.get(pos).getName());
                     thisHunt.setValue(itemList);
 
